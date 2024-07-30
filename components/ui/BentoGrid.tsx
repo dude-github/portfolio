@@ -68,10 +68,25 @@ export const BentoGridItem = ({
     },
   };
 
-  const handleCopy = () => {
-    const text = "example@gmail.com";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
+  // const handleCopy = () => {
+  //   const text = "example@gmail.com";
+  //   navigator.clipboard.writeText(text);
+  //   setCopied(true);
+  //   setTimeout(() => {
+  //     setCopied(false);
+  //   }, 2000);
+  // };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("example@gmail.com");
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy text: ", error);
+    }
   };
 
   return (
